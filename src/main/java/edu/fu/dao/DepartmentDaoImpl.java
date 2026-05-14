@@ -3,6 +3,7 @@ package edu.fu.dao;
 import edu.fu.entities.Department;
 import edu.fu.utils.DbContext;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 
 import java.util.List;
 
@@ -20,8 +21,23 @@ public class DepartmentDaoImpl implements DepartmentDao {
 
     @Override
     public Department create(Department department) {
-        entityManager.persist(department);
-        return department;
+        EntityTransaction transaction = null;
+
+        try {
+            transaction = entityManager.getTransaction();
+            transaction.begin();
+
+            entityManager.persist(department);
+
+            transaction.commit();
+
+            return department;
+
+        } catch (Exception e) {
+            transaction.rollback();
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override

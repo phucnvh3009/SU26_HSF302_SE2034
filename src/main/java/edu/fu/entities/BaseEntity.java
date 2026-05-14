@@ -1,9 +1,15 @@
 package edu.fu.entities;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.MappedSuperclass;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
+@MappedSuperclass
+@NoArgsConstructor@AllArgsConstructor
+@Setter@Getter
+@ToString
 public class BaseEntity {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
