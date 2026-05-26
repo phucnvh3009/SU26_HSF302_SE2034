@@ -12,6 +12,8 @@
 
         <!-- Entity classes -->
         <class>edu.fu.entities.Department</class>
+        <class>edu.fu.entities.Job</class>
+        <class>edu.fu.entities.User</class>
 
         <!-- Database configuration -->
         <properties>
